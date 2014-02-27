@@ -6,6 +6,10 @@ apply plugin: 'eclipse-wtp'
 sourceCompatibility = '1.7'
 targetCompatibility = '1.7'
 
+def springVersion = '4.0.2.RELEASE'
+def jsfApi = '2.2.5'
+def primefaces = '4.0'
+
 jar {
     baseName = 'jsf-primefaces-example'
     version =  '0.1.0'
@@ -33,16 +37,20 @@ eclipse {
 repositories {
     mavenCentral()
 	maven {
+		url "http://repo.spring.io/libs-snapshot"
 		url "http://repository.primefaces.org"
 	}
 }
 
 dependencies {
 	providedCompile 'javax.servlet:servlet-api:2.5'
-	compile 'com.sun.faces:jsf-api:2.2.5'
-	compile 'com.sun.faces:jsf-impl:2.2.5'
-	//compile 'javax.servlet.jsp:jsp-api:2.2'
-	//compile 'org.glassfish.web:el-impl:2.2'	
-	compile 'org.primefaces:primefaces:4.0'
-	compile 'org.primefaces.themes:bootstrap:1.0.10'
+	compile "com.sun.faces:jsf-api:$jsfApi"
+	compile "com.sun.faces:jsf-impl:$jsfApi"
+	compile "org.primefaces:primefaces:$primefaces"
+	compile "org.primefaces.themes:bootstrap:1.0.10"
+	compile "org.springframework:spring-core:$springVersion"
+	compile "org.springframework:spring-context:$springVersion"
+	compile "org.springframework:spring-webmvc:$springVersion"
+	compile 'org.apache.commons:commons-lang3:3.2.1'
+	compile 'javax.inject:javax.inject:1'
 }
