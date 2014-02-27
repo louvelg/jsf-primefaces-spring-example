@@ -1,0 +1,48 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+jar {
+    baseName = 'jsf-primefaces-example'
+    version =  '0.1.0'
+}
+
+eclipse {
+	project {
+		natures 'org.springsource.ide.eclipse.gradle.core.nature', 'org.eclipse.jdt.groovy.core.groovyNature', 'org.eclipse.wst.common.project.facet.core.nature'
+	}
+	classpath {
+		containers 'org.springsource.ide.eclipse.gradle.classpathcontainer'
+	}
+	wtp {
+		facet {
+		  facet name: 'jst.web', version: '3.0'
+		  facet name: 'java', version: '1.7'
+		}
+	}
+	jdt {
+		sourceCompatibility = 1.7
+		targetCompatibility = 1.7
+	}
+}
+
+repositories {
+    mavenCentral()
+	maven {
+		url "http://repository.primefaces.org"
+	}
+}
+
+dependencies {
+	providedCompile 'javax.servlet:servlet-api:2.5'
+	compile 'com.sun.faces:jsf-api:2.2.5'
+	compile 'com.sun.faces:jsf-impl:2.2.5'
+	//compile 'javax.servlet.jsp:jsp-api:2.2'
+	//compile 'org.glassfish.web:el-impl:2.2'	
+	compile 'org.primefaces:primefaces:4.0'
+	compile 'org.primefaces.themes:bootstrap:1.0.10'
+}
